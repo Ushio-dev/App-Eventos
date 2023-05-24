@@ -1,10 +1,9 @@
 package com.appeventos.App.Eventos.employee;
 
+import com.appeventos.App.Eventos.customexceptions.NotFoundEmployee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,6 +16,17 @@ public class EmployeeController {
     public ResponseEntity<?> getAllEmployees() {
         try {
             return ResponseEntity.ok(employeeService.getAllEmployees());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findOneEmployee(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(employeeService.findOneEmployee(id));
+        }catch (NotFoundEmployee e) {
+            return ResponseEntity.notFound().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
