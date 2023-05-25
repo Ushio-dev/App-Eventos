@@ -10,4 +10,5 @@ public interface EmployeeService {
     Employee findOneEmployee(Long id) throws NotFoundEmployee;
     void save(EmployeeRequest employeeRequest);
     void update(Employee employee);
+    void deleteById(Long id);
 }
