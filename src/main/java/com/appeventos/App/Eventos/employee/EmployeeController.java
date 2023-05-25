@@ -31,4 +31,14 @@ public class EmployeeController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> createEmployee(@RequestBody EmployeeRequest employeeRequest) {
+        try {
+            employeeService.save(employeeRequest);
+            return ResponseEntity.accepted().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

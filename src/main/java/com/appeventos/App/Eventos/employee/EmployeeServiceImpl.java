@@ -13,6 +13,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     private final EmployeeRepository employeeRepository;
 
+    @Override
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
@@ -33,5 +34,16 @@ public class EmployeeServiceImpl implements EmployeeService{
                 .build();
 
         return employee;
+    }
+
+    @Override
+    public void save(EmployeeRequest employeeRequest) {
+        Employee employee = Employee.builder()
+                .name(employeeRequest.getName())
+                .lastName(employeeRequest.getLastName())
+                .fileNumber(employeeRequest.getFileNumber())
+                .isActive(true)
+                .build();
+        employeeRepository.save(employee);
     }
 }
