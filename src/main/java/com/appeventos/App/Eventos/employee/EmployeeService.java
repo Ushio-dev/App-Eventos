@@ -9,4 +9,5 @@ public interface EmployeeService {
     List<Employee> getAllEmployees();
     Employee findOneEmployee(Long id) throws NotFoundEmployee;
     void save(EmployeeRequest employeeRequest);
+    void update(Employee employee);
 }

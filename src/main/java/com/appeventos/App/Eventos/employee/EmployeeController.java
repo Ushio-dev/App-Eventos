@@ -2,6 +2,7 @@ package com.appeventos.App.Eventos.employee;
 
 import com.appeventos.App.Eventos.customexceptions.NotFoundEmployee;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,16 @@ public class EmployeeController {
     public ResponseEntity<?> createEmployee(@RequestBody EmployeeRequest employeeRequest) {
         try {
             employeeService.save(employeeRequest);
+            return ResponseEntity.accepted().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateEmployee(@RequestBody Employee employee) {
+        try {
+            employeeService.update(employee);
             return ResponseEntity.accepted().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
