@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface EmployeeService {
     List<Employee> getAllEmployees();
     Employee findOneEmployee(Long id) throws NotFoundEmployee;
+    void save(EmployeeRequest employeeRequest);
 }
